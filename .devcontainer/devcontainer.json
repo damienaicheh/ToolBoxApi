@@ -1,0 +1,24 @@
+{
+    "name": ".NET Core",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:8.0-jammy",
+    "containerUser": "vscode",
+    "remoteUser": "vscode",
+    "features": {
+        "azure-cli": {
+            "version": "latest"
+        }
+    },
+    "forwardPorts": [
+        5000,
+        5001
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.csdevkit",
+                "ms-vscode.azurecli"
+            ]
+        }
+    }
+}
