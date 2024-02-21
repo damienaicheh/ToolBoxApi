@@ -24,6 +24,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+out/
 msbuild.log
 msbuild.err
 msbuild.wrn
@@ -83,3 +84,4 @@ terraform.rc
 __azurite*
 __blobstorage*
 __queuestorage*
+
