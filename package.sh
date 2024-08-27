@@ -10,4 +10,4 @@ dotnet publish -c Release -o out
 
 cd out && zip -r app.zip .
 
-pwd app.zip
+mv app.zip ../app.zip
