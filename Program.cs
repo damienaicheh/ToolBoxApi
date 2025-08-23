@@ -45,9 +45,40 @@ app.MapGet("/request-content", (HttpContext context) => {
 })
 .WithOpenApi();
 
+var firstNames = new[]
+{
+    "James", "Mary", "Robert", "Patricia", "John", "Jennifer", "Michael", "Linda", "David", "Elizabeth",
+    "William", "Barbara", "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah", "Christopher", "Karen"
+};
+
+var lastNames = new[]
+{
+    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+    "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"
+};
+
+app.MapGet("/fake-users", () =>
+{
+    var users = Enumerable.Range(1, 5).Select(index =>
+        new FakeUser(
+            Id: index,
+            FirstName: firstNames[Random.Shared.Next(firstNames.Length)],
+            LastName: lastNames[Random.Shared.Next(lastNames.Length)],
+            Email: $"user{index}@example.com",
+            Age: Random.Shared.Next(18, 80),
+            IsActive: Random.Shared.Next(0, 2) == 1
+        ))
+        .ToArray();
+    return users;
+})
+.WithName("GetFakeUsers")
+.WithOpenApi();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+record FakeUser(int Id, string FirstName, string LastName, string Email, int Age, bool IsActive);

@@ -4,3 +4,8 @@ GET {{ToolBoxApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{ToolBoxApi_HostAddress}}/fake-users/
+Accept: application/json
+
+###
