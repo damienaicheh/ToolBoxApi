@@ -45,6 +45,16 @@ app.MapGet("/request-content", (HttpContext context) => {
 })
 .WithOpenApi();
 
+app.MapGet("/health", () =>
+{
+    return new { 
+        time = DateTime.UtcNow,
+        status = "Healthy"
+    };
+})
+.WithName("GetHealthCheck")
+.WithOpenApi();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
