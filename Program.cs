@@ -43,6 +43,7 @@ app.MapGet("/request-content", (HttpContext context) => {
 
     return new { headers, contentType, host };
 })
+.WithName("GetRequestContent")
 .WithOpenApi();
 
 app.MapGet("/health", () =>
