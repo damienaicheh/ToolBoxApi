@@ -21,6 +21,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
+// Returns sample weather forecast data for testing
 app.MapGet("/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
@@ -36,6 +37,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+// Returns HTTP request information including headers, content type, and host
 app.MapGet("/request-content", (HttpContext context) => {
     var headers = context.Request.Headers;
     var contentType = context.Request.ContentType;
@@ -43,6 +45,18 @@ app.MapGet("/request-content", (HttpContext context) => {
 
     return new { headers, contentType, host };
 })
+.WithName("GetRequestContent")
+.WithOpenApi();
+
+// Returns health status and current timestamp
+app.MapGet("/health", () =>
+{
+    return new { 
+        time = DateTime.UtcNow,
+        status = "Healthy"
+    };
+})
+.WithName("GetHealthCheck")
 .WithOpenApi();
 
 app.Run();
